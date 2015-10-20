@@ -25,13 +25,13 @@ using namespace std;
 //Execute Program
 int main() {
     //Declare Variables
-    const int x = 3;
-    Sally salObj;           //Object to access Sally Class
-    const Sally constObj;   //Constant Object to access Const Sally Class.
+    const int x = 3;          //Constant Variable
+    Sally salObj;            //Object: to access Sally Class Function.
+    const Sally constObj;   //Constant Object to access Const Sally Class Function.
     
     //Prompt
-    salObj.printShiz();
-    constObj.printShiz2();
+    salObj.printShiz();      //Object - Used to access Function
+    constObj.printShiz2();  //Constant Object -  Used to access Const Functions.
     
     //Exit Stage Right
     return 0;

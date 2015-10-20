@@ -10,10 +10,15 @@
 
 class Sally {
 public:
-    Sally();
-    Sally(const Sally& orig);
+    Sally(int a, int b);
+    void print();
+    
+    
+    
     virtual ~Sally();
 private:
+    int regVar;              //private int
+    const int constVar;     //
 
 };
 

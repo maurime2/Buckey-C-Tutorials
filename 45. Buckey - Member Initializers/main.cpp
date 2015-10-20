@@ -6,13 +6,14 @@
  * 
  * Objectives:
  * 
- * 01.
+ * 01.  
  * 02.
  * 03.
  * 
  */
 //Libraries
 #include <iostream>
+#include "Sally.h"
 using namespace std;
 
 //Global Variables
@@ -22,7 +23,8 @@ using namespace std;
 //Execute Program
 int main() {
     //Declare Variables
-    
+    Sally so(3,87);     //Sally Object: so
+    so.print();
     //Exit Stage Right
     return 0;
 }

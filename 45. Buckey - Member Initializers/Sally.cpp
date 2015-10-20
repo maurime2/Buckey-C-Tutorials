@@ -6,12 +6,20 @@
  */
 
 #include "Sally.h"
+#include <iostream>
+using namespace std;
 
-Sally::Sally() {
+Sally::Sally(int a, int b) 
+: regVar(a),                 //List for Member Initializers
+  constVar(b)               //For Constant Variables.    
+{
 }
 
-Sally::Sally(const Sally& orig) {
+void Sally::print(){
+    cout<<"Regular var is: "<<regVar<<", const variable is: "<<constVar<<endl;
 }
+
+
 
 Sally::~Sally() {
 }
