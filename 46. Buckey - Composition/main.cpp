@@ -1,8 +1,15 @@
 /* 
- * File:   main.cpp
- * Author: Dell
- *
- * Created on October 20, 2015, 1:37 PM
+ * File:    main.cpp
+ * Author:  Mauricio S. Perez
+ * Program: 46.47. Buckey - Composition
+ * Created on August 31, 2015, 9:00 AM
+ * 
+ * Objectives:
+ * 
+ * 01.  
+ * 02.
+ * 03.
+ * 
  */
 //Libraries
 #include <iostream>
