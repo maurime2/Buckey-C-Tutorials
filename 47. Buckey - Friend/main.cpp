@@ -1,12 +1,12 @@
 /* 
  * File:    main.cpp
  * Author:  Mauricio S. Perez
- * Program: 46.47. Buckey - Composition
+ * Program: 48. Buckey - Friends
  * Created on October 20, 2015, 2:51 PM
  * 
  * Objectives: Learn Friends
  * 
- * 01.  
+ * 01.  Classes have to give away friendship.
  * 02.
  * 03.
  * 

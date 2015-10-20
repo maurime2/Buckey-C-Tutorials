@@ -35,8 +35,6 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/Daughter.o \
-	${OBJECTDIR}/Mother.o \
 	${OBJECTDIR}/main.o
 
 
@@ -58,21 +56,11 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/52._buckey_-_inheritance.exe
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/54._buckey_-derived_class_constructors_and_destructors.exe
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/52._buckey_-_inheritance.exe: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/54._buckey_-derived_class_constructors_and_destructors.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/52._buckey_-_inheritance ${OBJECTFILES} ${LDLIBSOPTIONS}
-
-${OBJECTDIR}/Daughter.o: Daughter.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Daughter.o Daughter.cpp
-
-${OBJECTDIR}/Mother.o: Mother.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Mother.o Mother.cpp
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/54._buckey_-derived_class_constructors_and_destructors ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -85,7 +73,7 @@ ${OBJECTDIR}/main.o: main.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/52._buckey_-_inheritance.exe
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/54._buckey_-derived_class_constructors_and_destructors.exe
 
 # Subprojects
 .clean-subprojects:

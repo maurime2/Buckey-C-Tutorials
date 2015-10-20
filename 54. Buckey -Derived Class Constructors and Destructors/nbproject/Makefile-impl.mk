@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=52. Buckey - Inheritance
+PROJECTNAME=54. Buckey -Derived Class Constructors and Destructors
 
 # Active Configuration
 DEFAULTCONF=Debug

@@ -1,7 +1,7 @@
 /* 
  * File:    main.cpp
  * Author:  Mauricio S. Perez
- * Program: 48. Buckey - this
+ * Program: 49. Buckey - this
   * Created on October 20, 2015, 3:09 PM
  * 
  * Objectives: Learn this

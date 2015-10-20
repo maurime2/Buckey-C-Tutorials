@@ -1,7 +1,7 @@
 /* 
  * File:    main.cpp
  * Author:  Mauricio S. Perez
- * Program: 48. Buckey - this
+ * Program: 50.51 Buckey - Operation Overloading
   * Created on October 20, 2015, 3:28 PM
  * 
  * Objectives: Learn this
