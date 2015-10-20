@@ -13,13 +13,14 @@
  */
 //Libraries
 #ifndef SALLY_H              // dont include a header file. "If not define...
-#define	SALLY_H             // ... deffine it."
+#define	SALLY_H             // ...SALLY HEADER File,  deffine SALLY HEADER file."
 
 //Execute Class
 class Sally {
 public:
     Sally();
-    void printCrap();        //We dont include "Sally::" because we are in "Sally::"
+    void printCrap();           //We don't include "Sally::" because 
+                               //we are in "Sally::"
 
 private:
 

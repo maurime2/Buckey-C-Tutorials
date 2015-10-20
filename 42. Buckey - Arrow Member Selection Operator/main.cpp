@@ -23,15 +23,16 @@ int main() {
     Sally sallyObject;      //Object to use as key to access Sally class
     Sally *sallyPointer = &sallyObject; //Sally Pointer Pointing to object
                                        //Pointer can be used to access 
-                                      //Sally class
+                                      //Sally class. *SallyPointer = Memory of
+                                     // sallyObject
     
     //Use Object to access function "printCrap()" in Sally Class.
     cout<<"Object oriented way: ";
-    sallyObject.printCrap();     //Methos 1: Object and variable name
+    sallyObject.printCrap();     //Method 1: Object w/ dot operator.
     
     cout<<endl<<"Pointer oriented way: ";
     sallyPointer->printCrap();   //Method 2: Pointer w/ Arrow Member Selection 
-                                //Operator w/ variable name
+                                //Operator.
     //Exit Stage Right
     return 0;
 }

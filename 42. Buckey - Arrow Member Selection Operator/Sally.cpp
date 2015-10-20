@@ -20,7 +20,7 @@ Sally::Sally(){
 
 }
 
-//Function
+//Functions in CPP - Prototype in Sally.h
 void Sally::printCrap(){        //:: because it belongs to Sally Class
     //Print Crap
     cout<<"Did someone say Steak?"<<endl;
