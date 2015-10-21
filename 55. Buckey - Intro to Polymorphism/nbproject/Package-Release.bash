@@ -13,9 +13,9 @@ CND_BUILDDIR=build
 CND_DLIB_EXT=dll
 NBTMPDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/54._buckey_-derived_class_constructors_and_destructors
-OUTPUT_BASENAME=54._buckey_-derived_class_constructors_and_destructors
-PACKAGE_TOP_DIR=54.buckey-derivedclassconstructorsanddestructors/
+OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/55._buckey_-_intro_to_polymorphism
+OUTPUT_BASENAME=55._buckey_-_intro_to_polymorphism
+PACKAGE_TOP_DIR=55.buckey-introtopolymorphism/
 
 # Functions
 function checkReturnCode
@@ -60,15 +60,15 @@ mkdir -p ${NBTMPDIR}
 
 # Copy files and create directories and links
 cd "${TOP}"
-makeDirectory "${NBTMPDIR}/54.buckey-derivedclassconstructorsanddestructors/bin"
+makeDirectory "${NBTMPDIR}/55.buckey-introtopolymorphism/bin"
 copyFileToTmpDir "${OUTPUT_PATH}.exe" "${NBTMPDIR}/${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}.exe" 0755
 
 
 # Generate tar file
 cd "${TOP}"
-rm -f ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/54.buckey-derivedclassconstructorsanddestructors.tar
+rm -f ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/55.buckey-introtopolymorphism.tar
 cd ${NBTMPDIR}
-tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/54.buckey-derivedclassconstructorsanddestructors.tar *
+tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/55.buckey-introtopolymorphism.tar *
 checkReturnCode
 
 # Cleanup

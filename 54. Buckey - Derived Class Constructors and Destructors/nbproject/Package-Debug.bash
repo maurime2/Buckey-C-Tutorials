@@ -13,8 +13,8 @@ CND_BUILDDIR=build
 CND_DLIB_EXT=dll
 NBTMPDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/54._buckey_-derived_class_constructors_and_destructors
-OUTPUT_BASENAME=54._buckey_-derived_class_constructors_and_destructors
+OUTPUT_PATH=${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/54._buckey_-_derived_class_constructors_and_destructors
+OUTPUT_BASENAME=54._buckey_-_derived_class_constructors_and_destructors
 PACKAGE_TOP_DIR=54.buckey-derivedclassconstructorsanddestructors/
 
 # Functions

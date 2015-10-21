@@ -1,8 +1,16 @@
 /* 
- * File:   main.cpp
- * Author: Dell
- *
+ * File:    main.cpp
+ * Author:  Mauricio S. Perez
+ * Program: 53. Buckey - Protected Members
  * Created on October 20, 2015, 4:11 PM
+ * 
+ * Objectives: Protected Members
+ * 
+ * 01.  Learn Protected Members
+ * 02.  
+ * 03.
+ * 
+ * 
  */
 //Libraries
 #include <iostream>
