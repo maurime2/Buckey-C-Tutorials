@@ -33,7 +33,7 @@ int main(int argc, char** argv) {
     int piecesTot = 12;   //Holds total value each player starts off with.
     int player1 = 12;    //Player 1: Starts With 12.
     int player2 = 12;   //Player 2; Starts With 12.
-    int move = 0;      //Holds Location of Desired Move
+    int pmove = 0;      //Holds Location of Desired Move
     int pieces = 0;   //Holds piece desired to move
     
     //Fill Array
@@ -43,12 +43,15 @@ int main(int argc, char** argv) {
     printBoard(SIZE, Board);     //Prints Board
 
     //Move
-    select1(SIZE, pieces, move, Board);     //player 1 select
+    select1(SIZE, pieces, pmove, Board);     //player 1 select
     
-    //Start Game - Fills Array with board pieces.
-//  fillArray1(SIZE, player1, Board);  //Fills Board Array with O's [21-32]
-//  fillArray2(SIZE, player2, Board); //Fills Board Array with X's [ 1-12]
+  //Start Game - Fills Array with board pieces.
+  fillArray1(SIZE, player1, Board);  //Fills Board Array with O's [21-32]
+  fillArray2(SIZE, player2, Board); //Fills Board Array with X's [ 1-12]
 
+  
+    //Print Board
+    printBoard(SIZE, Board);     //Prints Board
     
     //Exit Stage Right
     return 0;
@@ -73,7 +76,7 @@ int main(int argc, char** argv) {
     */  
     }//END OF: FILL ARRAY FUNCTION
 
-    //FILL ARRAY FUNCTION: PLAYER1
+    //FILL ARRAY FUNCTION: PLAYER1 - O
     int fillArray1(int SIZE, int player1, int Board []){  //Fills Board Array with Zero
     //Fill Array with Zero
         for(int i=21; i<SIZE;i++){
@@ -87,7 +90,7 @@ int main(int argc, char** argv) {
     */ 
     }//END OF: FILL ARRAY FUNCTION: PLAYER1
 
-    //FILL ARRAY FUNCTION: PLAYER2
+    //FILL ARRAY FUNCTION: PLAYER2 - X
     int fillArray2(int SIZE, int player2, int Board []){  //Fills Board Array with Zero
     //Fill Array with Zero
         for(int i=1; i<player2+1;i++){
@@ -234,24 +237,79 @@ int main(int argc, char** argv) {
     }//END OF: BOTTOM PART OF LINE: BLACK
 
     //Select FUNCTION
-    int select1(int SIZE, int pieces, int move, int Board []){  //Fills Board Array with Zero
-        cout<<"Player 1: Select A Peice?: ";
-        cin>>move;
+    int select1(int SIZE, int pieces, int pmove, int Board []){  //Fills Board Array with Zero
+        //boolian
+        bool p1 = false;
         
-        if(Board[move]/=0){
-            cout<<"Valid move!"<<endl;
-        }
+        //PLAYER 1 MUST SELECT THEIR OWN PIECE
+        do{
+        cout<<"Player 1: Select A Piece?: ";
+        cin>>pieces;
         
+            //OUT OF BOUNDS CHECK FOR ARRAY
+            if((pieces==0)||(pieces==33)){
+                cout<<"That is an Invalid Input! Try Again!"<<endl;
+            }
+            //Empty Space Selected
+            else if(Board[pieces]==0){
+                cout<<"That is an empty space. Try Again!"<<endl;
+            }
+            //Players Piece
+            else if(Board[pieces]==1){
+                cout<<"You have selected Piece "<<pieces<<"."<<endl;
+                p1=true;
+            }
+            //Opponents Piece
+            else if(Board[pieces]==2){
+                cout<<"You cannot move your opponents piece. Try Again!!!  "<<pieces<<"."<<endl;
+            }
+            //Everything Else
+            else{
+            cout<<"Invalid Input. Try Again!!!  "<<pieces<<"."<<endl;
+            }
+        }while(p1==false);//End of User Select
+ 
+        //Call Move Function
+        move(SIZE, pieces, pmove, Board);
     }//END OF: Player 1: Select FUNCTION
     
     
     //MOVE FUNCTION
-    int move(int SIZE, int pieces, int move, int Board []){  //Fills Board Array with Zero
-        cout<<"Where Would You Like to Move it to?: ";
-        cin>>move;
+    int move(int SIZE, int pieces, int pmove, int Board []){  //Fills Board Array with Zero
+         bool p1 = false;
+        do{  
+        cout<<"Where Would You Like to Move Piece "<<pieces<<" to? ";
+        cin>>pmove;
         
-        if(Board[move]/=0){
-            cout<<"Valid move!"<<endl;
+           
+        //Moving Up - Player 1
+        if(Board[pieces]==1){
+           
+            
+            //Left Border Move
+            if((pmove==4)||(pmove==12)||(pmove==20)||(pmove==28)){
+                if(pmove+4==pieces){
+                    cout<<"valid move to "<<pmove<<endl;
+                    p1=true;
+                }
+            }
+            
+        }//End OF: PLAYER 1 MOVE UP
+        
+        //Moving Down - Player 2
+        else if(Board[pieces]==2){
+        
         }
+        
+        //King'ed Piece - Player 1
+        else if(Board[pieces]==3){
+        
+        }//End OF: PLAYER 1 MOVE Down
+        
+        //Kinged Piece - Player 2
+        else if(Board[pieces]==4){
+        
+        }//End OF: KINGED
+        }while(p1==false);//End of Move Do While Loop
         
     }//END OF: MOVE FUNCTION
