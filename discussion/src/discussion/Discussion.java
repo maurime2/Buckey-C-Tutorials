@@ -1,6 +1,6 @@
 //Libraries
-package discussion;
-
+package discussion;                 //Homework: 7.11 Invoice Class: this program has 2 instance variables. Program in hw needs 4 
+                                   //
 //Public Class: Discussion
 public class Discussion {       //Access Modifier: public, provate, protected
                                         //Public:  Any and all code can access it
@@ -52,7 +52,26 @@ public class Discussion {       //Access Modifier: public, provate, protected
     //Main
     public static void main(String[] args) {
         
+        Person a_person = new Person();
+        Person b_person = new Person("Bill","123-45-6789");
+        Person c_person = new Person(b_person);
+        Person d_person = new Person("Bill","123456789");
+        //Set Name
+        //a_person.name="Bill";
         
+        //Call Name and SSN
+        
+        System.out.println("A Person Name: " + a_person.getName());
+        System.out.println("a_person ssn: "+ a_person.getSSN());
+        
+        
+        System.out.println("b_person Name: " + b_person.getName());
+        System.out.println("b_person ssn: "+ b_person.getSSN());
+        
+        System.out.println("c_person Name: " + c_person.getName());
+        System.out.println("c_person ssn: "+ c_person.getSSN());
+        
+        System.out.println(b_person.toString());
         
     }//End of main
     
