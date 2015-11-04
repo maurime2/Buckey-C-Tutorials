@@ -48,7 +48,6 @@ public class Discussion {       //Access Modifier: public, provate, protected
                                             //     |
                                             //     |
 
-
     //Main
     public static void main(String[] args) {
         
