@@ -67,7 +67,7 @@ int main(int argc, char** argv) {
         Board[0]=1;
         Board[32]=1;
         Board[25]=1;
-        Board[28]=1;
+        Board[28]=2;
         Board[19]=1;
         Board[18]=1;
         Board[13]=2;
@@ -250,26 +250,42 @@ int main(int argc, char** argv) {
         do{
         cout<<"Player 1: Select A Piece?: ";
         cin>>pieces;
-        
             //Single PLayer 1 Piece
             //OUT OF BOUNDS CHECK FOR ARRAY
             if((pieces<=0)||(pieces>=33)){
                 cout<<"That is an Invalid Input! Try Again!"<<endl;
-            }
+            }//End of Out of Bounds Check
             //Empty Space Selected
             else if(Board[pieces]==0){
                 cout<<"That is an empty space. Try Again!"<<endl;
-            }
+            }//End of Empty space check
             //Players Piece
             else if(Board[pieces]==1){
-                cout<<"You have selected Single Piece "<<pieces<<"."<<endl;
+                cout<<"You have selected Single Piece: "<<pieces<<endl;
                 //OUTER PIECES
                 if((pieces==9)||(pieces==17)||(pieces==25)||(pieces==8)||(pieces==16)||(pieces==24)||(pieces==32)){
                     if(Board[pieces-4]==0){
                         cout<<"Outer Piece Has Legal Moves!"<<endl;
                     p1=true;
                     }
-                }
+
+                    //Check if Edible Left Side
+                    if((pieces==9)||(pieces==17)||(pieces==25)){
+                        if(((Board[pieces-4]==2)||(Board[pieces-4]==4))&&(Board[pieces-7]==0)){
+                            cout<<"can Eat peace at:"<<pieces-4<<endl;
+                            //TAKEN FUNCTION                                                                      //TAKEN FUNCTION
+                        }
+                    }//End of check Edible Left Side
+                    
+                    //Check if Edible Right Side
+                    if((pieces==32)||(pieces==24)||(pieces==16)||(pieces==8)){
+                            if(((Board[pieces-4]==2)||(Board[pieces-4]==4))&&(Board[pieces-9]==0)){
+                                cout<<"Can Eat peace at:"<<pieces-4<<endl;
+                                //TAKEN FUNCTION                                                                    //TAKEN FUNCTION
+                            }
+                    }//End of check Edible Left Side                    
+                }//End Outer Pieces else if loop
+
                 //INNER PEICES WITH DIFFERENCE OF 4 and 5
                 else if((pieces==5)||(pieces==6)||(pieces==7)||
                         (pieces==13)||(pieces==14)||(pieces==15)||
