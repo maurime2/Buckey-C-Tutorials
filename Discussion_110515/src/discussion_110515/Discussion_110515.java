@@ -15,6 +15,21 @@ public class Discussion_110515 {
         b.setYear(2016);
         System.out.println("object b (Year should be 2016);"+b.toString());
         
+        
+        Date d = new Date(2,29,2001);
+        
+        Employee employee1 = new Employee("John","Jones",d);
+        System.out.println(employee1.toString());
+        
+        Employee employee2 = new Employee("Sam","Smith",new Date(12,29,2013));  //Anonymous object
+        System.out.println(employee2.toString());
+        
+
+        employee2.getHireDate().setYear(2000);
+        employee2.getHireDate().setMonth(2);
+        employee2.getHireDate().setDay(29);
+        System.out.println(employee2.toString());
+                
     }//End Main
     
 }//Class Discussion End
