@@ -12,8 +12,8 @@ using namespace std;
 
 //Function Prototypes: Fill Array
 int fillArray(int, int []);      //Fills Board Array with Zero.
-int fillArray1(int, int, int []);//Fills Board Array with Player 1 Peices.
-int fillArray2(int, int, int []);//Fills Board Array with Player 1 Peices.
+int fillArray1(int, int, int []);//Fills Board Array with Player 1 Pieces.
+int fillArray2(int, int, int []);//Fills Board Array with Player 1 Pieces.
 //Function Prototypes: Print Board
 int printBoard(int, int []);    //Prints Board w/ Board Array.
 int printTopW(int, int, int []);   //When tile row starts White, Top Part only.
@@ -24,7 +24,8 @@ int printBottomB(int, int, int []);//When row starts Black, Bottom Part only.
 int select(int, int, int, int []);      //Prompts User to Select Piece.
 int move(int, int, int, int []);      //Prompts User to Move to a  new Location.
 //Function Prototypes: Check Moves and Eats
-bool cMoves(int, int, int, int [],bool ,bool ,bool, bool);      //Prompts User to Select Piece.
+bool cMoves(int, int, int, int [],bool ,bool ,bool, bool);   //Checks Legal Moves - Single Pieces.
+bool cMovesK(int, int, int, int [],bool ,bool ,bool, bool); //Checks Legal Moves - Kinged Pieces.
 bool cMin5(int, int, int, int [],bool ,bool, bool);      //Checks For Empty Space 5 down
 bool cMin4(int, int, int, int [],bool ,bool, bool);      //Checks For Empty Space 4 down
 bool cMin3(int, int, int, int [],bool ,bool, bool);      //Checks For Empty Space 3 down
@@ -286,7 +287,7 @@ int main(int argc, char** argv) {
                     else if(Board[pieces]==3){
                         cout<<"You have selected a Kinged Piece: "<<pieces<<endl;
                         kinged = true;
-                        p1=cMoves(SIZE,pieces,pmove,Board,p1,p2,kinged,eat);
+                        p1=cMovesK(SIZE,pieces,pmove,Board,p1,p2,kinged,eat);
                         //Check Eat
                     }
                     else if(Board[pieces]==1){
@@ -423,46 +424,8 @@ int main(int argc, char** argv) {
     
     //Check Moves
     bool cMoves(int SIZE, int pieces, int pmove, int Board [],bool p1,bool p2,bool kinged, bool eat){  //Checks if piece selected can move
-        //Check Player 1 Moves
-            //Player 1: Single Piece Check
-            if(Board[pieces]==1){
-                //OUTER PIECES - Check For OUter Pieces
-                if((pieces==9)||(pieces==17)||(pieces==25)||
-                   (pieces==8)||(pieces==16)||(pieces==24)||(pieces==32)){
-                    
-                    //Check If Outer Pieces have Legal Moves
-                    p1=cMin4(SIZE, pieces,pmove, Board,p1,kinged,eat);
-                
-                }//End Outer Pieces Check
-
-                //Check For Inner Pieces: 4 and 3 spaces behind
-                if((pieces==5) ||(pieces==6) ||(pieces==7)||
-                   (pieces==13)||(pieces==14)||(pieces==15)||
-                   (pieces==21)||(pieces==22)||(pieces==23)||
-                   (pieces==29)||(pieces==30)||(pieces==31)){
-
-                    //Check 4 spaces Behind 
-                    p1=cMin4(SIZE, pieces,pmove, Board,p1,kinged,eat);
-                    
-                    //Check 3 spaces Behind 
-                    p1=cMin3(SIZE, pieces,pmove, Board,p1,kinged,eat);
-                    
-                }//End of Inner Pieces Check: 4 & 3
-                
-                //Check 5 and 4 spaces Behind
-                if((pieces==10)||(pieces==11)||(pieces==12)
-                        ||(pieces==18)||(pieces==19)||(pieces==20)
-                        ||(pieces==26)||(pieces==27)||(pieces==28)){
-
-                    //Check 5 spaces Behind
-                    p1=cMin5(SIZE, pieces,pmove, Board,p1,kinged,eat);
-                    
-                    //Check 4 spaces Behind 
-                    p1=cMin4(SIZE, pieces,pmove, Board,p1,kinged,eat);
-                
-                }//End of Inner Pieces Check: 5 & 4
-            }//End Of Single Player 1 Pieces Check
-            
+            //Check Player 1: Kinged Pieces
+            if(Board[pieces]==3){
             //Player 1: Kinged Legal Check: -4,-3 && +4,+5.
             if((pieces==5)||(pieces==6)||(pieces==7)||
                (pieces==13)||(pieces==14)||(pieces==15)||
@@ -480,20 +443,48 @@ int main(int argc, char** argv) {
                     
                     //Check 4 spaces Behind 
                     p1=cPlu4(SIZE, pieces,pmove, Board,p1,kinged,eat);
-                
-              cout<<endl;
-            }
+            }//End of 4 way check part 1
         
             //Player 1: Kinged Legal Check: -5,-4 && +3,+4.
             if((pieces==10)||(pieces==11)||(pieces==12)||
                (pieces==18)||(pieces==19)||(pieces==20)||
                (pieces==26)||(pieces==27)||(pieces==28)){
+
+            }//end of 4way check part 2
+
+           //Check Sides
+           //Check Top
+           //Check Bottom 
+            
+         }//End Check Player 1: Kinged Pieces.
+         
             
             
-               
+        //Check Player 2 Moves
+        if(Board[pieces]==4){
+            //Player 2: Single Piece Check
+            if(pieces==2){
+            }
+       
+            //Player 2: Kinged Legal Check
+            else if(pieces==3){
+            }
+        }
+    }//End Check Moves
+    
+    
+    //Check Moves
+    bool cMovesK(int SIZE, int pieces, int pmove, int Board [],bool p1,bool p2,bool kinged, bool eat){  //Checks if piece selected can move - Kinged
+            //Player 1: Kinged Legal Check: -5,-4 && +3,+4.
+            if((pieces==10)||(pieces==11)||(pieces==12)||
+               (pieces==18)||(pieces==19)||(pieces==20)||
+               (pieces==26)||(pieces==27)||(pieces==28)){
+
               cout<<endl;  
             }
-            
+
+         }//End Check Player 1: Kinged Pieces.
+         
             
             
         //Check Player 2 Moves
@@ -505,7 +496,11 @@ int main(int argc, char** argv) {
             else if(pieces==3){
             }
             
-    }//End Check Moves
+    }//End Check Moves - Kinged Pieces
+    
+    
+    
+    
     
     //Check Eat
     bool cEat(int SIZE, int pieces, int pmove, int Board [],bool p1,bool p2,bool kinged, bool eat){  //Checks if Piece Selected can eat
