@@ -10,25 +10,39 @@
 #include <cstdlib>
 using namespace std;
 
-//Function Prototypes
+//Function Prototypes: Fill Array
 int fillArray(int, int []);      //Fills Board Array with Zero.
-int fillArray1(int, int, int []);//Fills Board Array with Player 1 Peices.
-int fillArray2(int, int, int []);//Fills Board Array with Player 1 Peices.
+int fillArray1(int, int, int []);//Fills Board Array with Player 1 Pieces.
+int fillArray2(int, int, int []);//Fills Board Array with Player 1 Pieces.
+//Function Prototypes: Print Board
 int printBoard(int, int []);    //Prints Board w/ Board Array.
 int printTopW(int, int, int []);   //When tile row starts White, Top Part only.
 int printBottomW(int, int, int []);  //When row starts White, Bottom Part only.
 int printTopB(int, int, int []);    //When row starts Black, Top Part only.
 int printBottomB(int, int, int []);//When row starts Black, Bottom Part only.
-int select1(int, int, int, int []);      //Prompts User to Select Piece.
+//Function Prototypes: User Inputs - Select Piece and Move
+int select(int, int, int, int []);      //Prompts User to Select Piece.
 int move(int, int, int, int []);      //Prompts User to Move to a  new Location.
+//Function Prototypes: Check Moves and Eats
+bool cMoves(int, int, int, int [],bool ,bool ,bool, bool);   //Checks Legal Moves - Single Pieces.
+bool cMovesK(int, int, int, int [],bool ,bool ,bool, bool); //Checks Legal Moves - Kinged Pieces.
+bool cMin5(int, int, int, int [],bool ,bool, bool);      //Checks For Empty Space 5 down
+bool cMin4(int, int, int, int [],bool ,bool, bool);      //Checks For Empty Space 4 down
+bool cMin3(int, int, int, int [],bool ,bool, bool);      //Checks For Empty Space 3 down
+bool cPlu5(int, int, int, int [],bool ,bool, bool);      //Checks For Empty Space 5 Up.
+bool cPlu4(int, int, int, int [],bool ,bool, bool);      //Checks For Empty Space 4 Up.
+bool cPlu3(int, int, int, int [],bool ,bool, bool);      //Checks For Empty Space 3 Up.
+bool cEat(int, int, int, int [],bool ,bool ,bool, bool);      //Prompts User to Select Piece.
+//Function Prototypes: Change
 int change(int, int, int, int []);  //Change the values in the board
+
 
 //Global Variables
 
 //Main Starts Here
 int main(int argc, char** argv) {
     //Declare Variables
-    int SIZE = 33;          //Array Size.
+    int SIZE = 35;          //Array Size.
     int Index = 0;          //Array Index.
     int Board[SIZE];       //Array That Holds Board Location and pieces.
     int piecesTot = 12;   //Holds total value each player starts off with.
@@ -37,19 +51,16 @@ int main(int argc, char** argv) {
     int pmove = 0;      //Holds Location of Desired Move
     int pieces = 0;   //Holds piece desired to move
     
-    //Fill Array
-    fillArray(SIZE, Board);             //Fills Board Array with Zero
-    printBoard(SIZE, Board);     //Prints Board
-    select1(SIZE, pieces, pmove, Board);     //player 1 select
-    
-  //Start Game - Fills Array with board pieces.
-  //fillArray1(SIZE, player1, Board);  //Fills Board Array with O's [21-32]
-  //fillArray2(SIZE, player2, Board); //Fills Board Array with X's [ 1-12]
+  //Fill Array - Fills Array with board pieces.
+  fillArray (SIZE, Board);  //Fills Board Array with O's [21-32]  
+  fillArray1(SIZE, player1, Board);  //Fills Board Array with O's [21-32]
+  fillArray2(SIZE, player2, Board); //Fills Board Array with X's [ 1-12]
+ 
+  //Start Game   
+        printBoard(SIZE, Board);     //Prints Board
+                select(SIZE, pieces, pmove, Board);
+               // move(SIZE, pieces, pmove, Board);   //Call Move Function
 
-  
-    //Print Board
-    printBoard(SIZE, Board);     //Prints Board
-    
     //Exit Stage Right
     return 0;
 }//Main Ends
@@ -62,7 +73,7 @@ int main(int argc, char** argv) {
         for(int i=0; i<SIZE;i++){
             Board[i]=0;
         }
-        
+     /*    
         //Fill in Only One
         Board[0]=1;
         Board[32]=1;
@@ -71,26 +82,30 @@ int main(int argc, char** argv) {
         Board[19]=1;
         Board[18]=1;
         Board[13]=2;
-    /*    
+    */     
         //Output Array
         for(int i=0; i<SIZE;i++){
-            //cout<<"Reference "<<i<<": "<<Board[i]<<endl; //Displays Array Val.
+            cout<<"Reference "<<i<<": "<<Board[i]<<endl; //Displays Array Val.
         }
-    */  
+    
     }//END OF: FILL ARRAY FUNCTION
 
     //FILL ARRAY FUNCTION: PLAYER1 - O
     int fillArray1(int SIZE, int player1, int Board []){  //Fills Board Array with Zero
     //Fill Array with Zero
-        for(int i=21; i<SIZE;i++){
+        for(int i=21; i<(SIZE-2);i++){
             Board[i]=1;
         }
-
+            //Location 33 holds number of pieces of Player 1
+            Board[33]=12;
+            //Location 0 holds Player Turn: 1 for Player 1, 2 for Player 2
+            Board[0]=1;
+            
         //Output Array
-    /*  for(int i=0; i<SIZE;i++){
+      for(int i=0; i<SIZE;i++){
             cout<<"Reference "<<i<<": "<<Board[i]<<endl; //Displays Array Val.
         }
-    */ 
+     
     }//END OF: FILL ARRAY FUNCTION: PLAYER1
 
     //FILL ARRAY FUNCTION: PLAYER2 - X
@@ -99,19 +114,21 @@ int main(int argc, char** argv) {
         for(int i=1; i<player2+1;i++){
             Board[i]=2;
         }
-
+            //Location 34 holds number of pieces of Player 2
+            Board[34]=12;
+            
         //Output Array
-    /*  for(int i=0; i<SIZE;i++){
+      for(int i=0; i<SIZE;i++){
             cout<<"Reference "<<i<<": "<<Board[i]<<endl; //Displays Array Val.
         }
-    */ 
+     
     }//END OF: FILL ARRAY FUNCTION: PLAYER2
 
     //PRINT BOARD
     int printBoard(int SIZE, int Board []){  //Fills Board Array with Zero
         //Print Line TOP
         
-        for(int i=1;i<SIZE;i++){
+        for(int i=1;i<SIZE-2;i++){
         
             
             //Starts With White Space: TOP 
@@ -240,91 +257,53 @@ int main(int argc, char** argv) {
     }//END OF: BOTTOM PART OF LINE: BLACK
 
     //Select FUNCTION
-    int select1(int SIZE, int pieces, int pmove, int Board []){  //Fills Board Array with Zero
+    int select(int SIZE, int pieces, int pmove, int Board []){  //Fills Board Array with Zero
         //boolian
         bool p1 = false;
         bool p2 = false;
+        bool kinged = false;
+        bool eat = false;
         
         //PLAYER 1 MUST SELECT THEIR OWN PIECE
         if(Board[0]==1){
-        do{
-        cout<<"Player 1: Select A Piece?: ";
-        cin>>pieces;
-            //Single PLayer 1 Piece
-            //OUT OF BOUNDS CHECK FOR ARRAY
-            if((pieces<=0)||(pieces>=33)){
-                cout<<"That is an Invalid Input! Try Again!"<<endl;
-            }//End of Out of Bounds Check
-            //Empty Space Selected
-            else if(Board[pieces]==0){
-                cout<<"That is an empty space. Try Again!"<<endl;
-            }//End of Empty space check
-            //Players Piece
-            else if(Board[pieces]==1){
-                cout<<"You have selected Single Piece: "<<pieces<<endl;
-                //OUTER PIECES
-                if((pieces==9)||(pieces==17)||(pieces==25)||(pieces==8)||(pieces==16)||(pieces==24)||(pieces==32)){
-                    if(Board[pieces-4]==0){
-                        cout<<"Outer Piece Has Legal Moves!"<<endl;
-                    p1=true;
-                    }
+            do{
+                cout<<"Player 1: Select A Piece?: ";
+                cin>>pieces;
 
-                    //Check if Edible Left Side
-                    if((pieces==9)||(pieces==17)||(pieces==25)){
-                        if(((Board[pieces-4]==2)||(Board[pieces-4]==4))&&(Board[pieces-7]==0)){
-                            cout<<"can Eat peace at:"<<pieces-4<<endl;
-                            //TAKEN FUNCTION                                                                      //TAKEN FUNCTION
-                        }
-                    }//End of check Edible Left Side
-                    
-                    //Check if Edible Right Side
-                    if((pieces==32)||(pieces==24)||(pieces==16)||(pieces==8)){
-                            if(((Board[pieces-4]==2)||(Board[pieces-4]==4))&&(Board[pieces-9]==0)){
-                                cout<<"Can Eat peace at:"<<pieces-4<<endl;
-                                //TAKEN FUNCTION                                                                    //TAKEN FUNCTION
-                            }
-                    }//End of check Edible Left Side                    
-                }//End Outer Pieces else if loop
+                //Single Player 1 Piece
+                    //OUT OF BOUNDS CHECK FOR ARRAY
+                    if((pieces<=0)||(pieces>=33)){
+                        cout<<"That is an Invalid Input! Try Again!"<<endl;
+                    }//End of Out of Bounds Check
+                    //Empty Space Selected
+                    else if(Board[pieces]==0){
+                        cout<<"That is an empty space. Try Again!"<<endl;
+                    }//End of Empty space check
+                    //Player 2's Piece Selected
+                    else if((Board[pieces]==2)||(Board[pieces]==4)){
+                        cout<<"That is Your Opponents Piece!!! Try Again!"<<endl;
+                    }//End of Player 2's Check
+                    //Players Piece
+                    else if(Board[pieces]==3){
+                        cout<<"You have selected a Kinged Piece: "<<pieces<<endl;
+                        kinged = true;
+                        p1=cMovesK(SIZE,pieces,pmove,Board,p1,p2,kinged,eat);
+                        //Check Eat
+                    }
+                    else if(Board[pieces]==1){
+                        cout<<"You have selected Single Piece: "<<pieces<<endl;
+                        p1=cMoves(SIZE,pieces,pmove,Board,p1,p2,kinged,eat);
+                        //Check Eat
+                    }//End of Player Piece Else If
+                
+                //Print Board Again If Error...
+                if(p1==false){
+                   printBoard(SIZE, Board);     //Prints Board 
+                }
+                
+            }while(p1==false);//End of User Select
+        }//End of Player 1 Select
 
-                //INNER PEICES WITH DIFFERENCE OF 4 and 5
-                else if((pieces==5)||(pieces==6)||(pieces==7)||
-                        (pieces==13)||(pieces==14)||(pieces==15)||
-                        (pieces==21)||(pieces==22)||(pieces==23)||
-                        (pieces==29)||(pieces==30)||(pieces==31)){
-                    if(Board[pieces-4]==0||Board[pieces-3]==0){
-                    cout<<"Inner Piece 1 Has Legal Moves!!"<<endl;
-                    p1=true;
-                    }
-                }
-                //All Other Inner Peices with differenc of 
-                else if((pieces==10)||(pieces==11)||(pieces==12)||
-                        (pieces==18)||(pieces==19)||(pieces==20)||
-                        (pieces==26)||(pieces==27)||(pieces==28)){
-                    if((Board[pieces-4]==0)||(Board[pieces-5]==0)){
-                    cout<<"Inner Piece 2 Has Legal Moves!!"<<endl;
-                    p1=true;
-                    }
-                }
-            }//End of Player Piece Else If
-        
-           //Players Piece - Kinged
-            else if(Board[pieces]==3){
-                cout<<"You have selected a Kinged Piece "<<pieces<<"."<<endl;
-                p1=true;
-            }
-            //Opponents Piece
-            else if(Board[pieces]==2){
-                cout<<"You cannot move your opponents piece. Try Again!!!  "<<pieces<<"."<<endl;
-            }
-            //Everything Else
-            if(p1==false){
-            cout<<"Invalid Input. No Legal Moves Selected. Try Again!!!  "<<"."<<endl;
-            }
-        }while(p1==false);//End of User Select
-        }
-        
-        //Call Move Function
-        move(SIZE, pieces, pmove, Board);
     }//END OF: Player 1: Select FUNCTION
     
     
@@ -378,7 +357,7 @@ int main(int argc, char** argv) {
             //False Move
             if(p1==false){
                 cout<<"In-valid move to:"<<pmove<<" from:"<<pieces<<" Try Again!!!"<<endl;
-                select1(SIZE, pieces, pmove, Board);
+                select(SIZE, pieces, pmove, Board);
             }
             
         }//End OF: PLAYER 1 MOVE UP
@@ -441,4 +420,150 @@ int main(int argc, char** argv) {
             Board[pmove]=temp;
             
       printBoard(SIZE, Board);     //Prints Board      
+    }
+    
+    //Check Moves
+    bool cMoves(int SIZE, int pieces, int pmove, int Board [],bool p1,bool p2,bool kinged, bool eat){  //Checks if piece selected can move
+            //Check Player 1: Kinged Pieces
+            if(Board[pieces]==3){
+            //Player 1: Kinged Legal Check: -4,-3 && +4,+5.
+            if((pieces==5)||(pieces==6)||(pieces==7)||
+               (pieces==13)||(pieces==14)||(pieces==15)||
+               (pieces==21)||(pieces==22)||(pieces==23)){
+            
+                //Kinged: 4 way check
+                    //Check 4 spaces Behind 
+                    p1=cMin4(SIZE, pieces,pmove, Board,p1,kinged,eat);
+                    
+                    //Check 3 spaces Behind 
+                    p1=cMin3(SIZE, pieces,pmove, Board,p1,kinged,eat);
+                    
+                    //Check 5 spaces Ahead
+                    p1=cPlu5(SIZE, pieces,pmove, Board,p1,kinged,eat);
+                    
+                    //Check 4 spaces Behind 
+                    p1=cPlu4(SIZE, pieces,pmove, Board,p1,kinged,eat);
+            }//End of 4 way check part 1
+        
+            //Player 1: Kinged Legal Check: -5,-4 && +3,+4.
+            if((pieces==10)||(pieces==11)||(pieces==12)||
+               (pieces==18)||(pieces==19)||(pieces==20)||
+               (pieces==26)||(pieces==27)||(pieces==28)){
+
+            }//end of 4way check part 2
+
+           //Check Sides
+           //Check Top
+           //Check Bottom 
+            
+         }//End Check Player 1: Kinged Pieces.
+         
+            
+            
+        //Check Player 2 Moves
+        if(Board[pieces]==4){
+            //Player 2: Single Piece Check
+            if(pieces==2){
+            }
+       
+            //Player 2: Kinged Legal Check
+            else if(pieces==3){
+            }
+        }
+    }//End Check Moves
+    
+    
+    //Check Moves
+    bool cMovesK(int SIZE, int pieces, int pmove, int Board [],bool p1,bool p2,bool kinged, bool eat){  //Checks if piece selected can move - Kinged
+            //Player 1: Kinged Legal Check: -5,-4 && +3,+4.
+            if((pieces==10)||(pieces==11)||(pieces==12)||
+               (pieces==18)||(pieces==19)||(pieces==20)||
+               (pieces==26)||(pieces==27)||(pieces==28)){
+
+              cout<<endl;  
+            }
+
+         }//End Check Player 1: Kinged Pieces.
+         
+            
+            
+        //Check Player 2 Moves
+            //Player 2: Single Piece Check
+            if(pieces==2){
+            }
+       
+            //Player 2: Kinged Legal Check
+            else if(pieces==3){
+            }
+            
+    }//End Check Moves - Kinged Pieces
+    
+    
+    
+    
+    
+    //Check Eat
+    bool cEat(int SIZE, int pieces, int pmove, int Board [],bool p1,bool p2,bool kinged, bool eat){  //Checks if Piece Selected can eat
+        
+    }
+    
+    //Check Minus 5
+    bool cMin5(int SIZE, int pieces, int pmove, int Board [],bool p,bool kinged, bool eat){  //Checks if piece selected can move
+                    //Check 5
+                    if(Board[pieces-5]==0){
+                        cout<<"Inner Piece Has Legal Move: "<<pieces-5<<endl;
+                        return p=true;
+                    }//End Legal Check If Statement: 4 spaces Behind.
+                    return p=false;
+    }
+    
+    //Check Minus 4
+    bool cMin4(int SIZE, int pieces, int pmove, int Board [],bool p,bool kinged, bool eat){  //Checks if piece selected can move
+                    //Check 4 spaces Behind 
+                     if(Board[pieces-4]==0){
+                        cout<<"Inner Piece Has Legal Move: "<<pieces-4<<endl;
+                        return p=true;
+                    }//End Legal Check If Statement: 3 Spaces Behind.
+                     return p=false;
+    }
+    
+    //Check Minus 3
+    bool cMin3(int SIZE, int pieces, int pmove, int Board [],bool p,bool kinged, bool eat){  //Checks if piece selected can move
+                    //Check 3 spaces Behind 
+                     if(Board[pieces-3]==0){
+                        cout<<"Inner Piece Has Legal Move: "<<pieces-3<<endl;
+                        return p=true;
+                    }//End Legal Check If Statement: 3 Spaces Behind.
+                     return p=false;
+    }
+    
+    
+    //Check Plus 5
+    bool cPlu5(int SIZE, int pieces, int pmove, int Board [],bool p,bool kinged, bool eat){  //Checks if piece selected can move
+                     //Check 5 spaces Behind 
+                     if(Board[pieces+5]==0){
+                        cout<<"Inner Piece Has Legal Move: "<<pieces+5<<endl;
+                        return p=true;
+                    }//End Legal Check If Statement: 3 Spaces Behind.
+                     return p=false;
+    }
+    
+    //Check Plus 4
+    bool cPlu4(int SIZE, int pieces, int pmove, int Board [],bool p,bool kinged, bool eat){  //Checks if piece selected can move
+                    //Check 4 spaces Behind 
+                     if(Board[pieces+4]==0){
+                        cout<<"Inner Piece Has Legal Move: "<<pieces+4<<endl;
+                        return p=true;
+                    }//End Legal Check If Statement: 3 Spaces Behind.
+                     return p=false;
+    }
+    
+    //Check Plus 3
+    bool cPlu3(int SIZE, int pieces, int pmove, int Board [],bool p,bool kinged, bool eat){  //Checks if piece selected can move
+                    //Check 3 spaces Behind 
+                     if(Board[pieces+3]==0){
+                        cout<<"Inner Piece Has Legal Move: "<<pieces+3<<endl;
+                        return p=true;
+                    }//End Legal Check If Statement: 3 Spaces Behind.
+                     return p=false;
     }
