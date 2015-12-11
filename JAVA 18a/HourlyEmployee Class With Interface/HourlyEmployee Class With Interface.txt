@@ -1,0 +1,4 @@
+HourlyEmployee Class With Interface
+Attached Files:
+File EmployeeInterfaceDemo.zip (19.685 KB)
+This is the HourlyEmployee class that inherits the EmployeeClass that implements the Payable interface.
