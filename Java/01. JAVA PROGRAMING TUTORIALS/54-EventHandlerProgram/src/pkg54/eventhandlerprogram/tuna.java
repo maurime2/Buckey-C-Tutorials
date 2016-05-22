@@ -39,9 +39,10 @@ public class tuna extends JFrame{
         item2.addActionListener(handler);     //the items
         item3.addActionListener(handler);
         passwordField.addActionListener(handler);
-        
+        }//public Tuna constructor
+    
         //Class inside of class - will inherit all the stuff above
-        private class thehandler implements ActionListener{ //only one method
+        public class thehandler implements ActionListener{ //only one method
             //handles the event
             public void actionPerformed(ActionEvent event){
                 String string = "";
@@ -59,13 +60,11 @@ public class tuna extends JFrame{
                 if(event.getSource()==passwordField)    //getActionCommand means get text from that location...
                     string = String.format("passwordField: %s", event.getActionCommand());
             
-            //shows message dialog
+            //shows message dialog in the center of screen
             JOptionPane.showMessageDialog(null,string);
             
             }//actionPerformed end
         
         }//Private class thehandler end
-        
-    }//public class tuna end
-    
-}//class tuna end
+
+}//public class tuna end
