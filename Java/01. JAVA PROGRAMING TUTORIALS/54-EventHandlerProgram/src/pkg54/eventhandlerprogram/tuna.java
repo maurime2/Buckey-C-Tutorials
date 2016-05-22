@@ -58,9 +58,13 @@ public class tuna extends JFrame{
                 
                 if(event.getSource()==passwordField)    //getActionCommand means get text from that location...
                     string = String.format("passwordField: %s", event.getActionCommand());
-        }
+            
+            //shows message dialog
+            JOptionPane.showMessageDialog(null,string);
+            
+            }//actionPerformed end
         
-        
+        }//Private class thehandler end
         
     }//public class tuna end
     
