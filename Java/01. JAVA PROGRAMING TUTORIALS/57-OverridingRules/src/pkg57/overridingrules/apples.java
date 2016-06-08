@@ -16,8 +16,5 @@ public class apples {
         //bucky.digest(fo);
         bucky.digest(tu);
         bucky.digest(pp);
-        
-        
-    }//main end
-    
+    }//main end    
 }//class apples start
